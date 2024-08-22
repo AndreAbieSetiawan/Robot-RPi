@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kendali Mobil dengan Raspberry Pi</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function sendCommand(command) {
+            $.get('/' + command, function(data) {
+                if(data.status == "ok") {
+                    console.log(command + " command sent successfully");
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Kendali Mobil dengan Raspberry Pi</h1>
+    <button onclick="sendCommand('maju')">MAJU</button>
+    <br>
+    <button onclick="sendCommand('kiri')">KIRI</button>
+    <button onclick="sendCommand('berhenti')">BERHENTI</button>
+    <button onclick="sendCommand('kanan')">KANAN</button>
+    <br>
+    <button onclick="sendCommand('mundur')">MUNDUR</button>
+    
+    <h1>Live Stream</h1>
+    <iframe src="http://{{ ip }}:8080/?action=stream" width="540" height="320" frameborder="0"></iframe>
+</body>
+</html>
